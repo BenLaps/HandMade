@@ -1,0 +1,131 @@
+<div th:fragment="cardBlog">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div th:each="el : ${posts}" class="col">
+
+            <div class="card shadow-sm m-3">
+                <a th:href="@{/blog/{id}(id=${el.id})}" class="text-decoration-none">
+                    <div th:if="${el.img_url != ''}">
+                        <img class="card-img-top" th:src="@{${el.img_url}}" th:alt="'img'"/>
+                    </div>
+                </a>
+                <div class="card-body">
+                    <h1 th:text="${el.title}"/>
+                    <div th:if="${el.short_description != ''}">
+                        <p th:text="${el.short_description}" class="card-text"/>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group my-2">
+                            <form th:action="'/blog/'+${el.id}">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary"> Детальніше</button>
+                                <!--                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                            </form>
+
+                        </div>
+                        <small class="text-body-secondary">9 mins</small>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!         -->
+<div th:fragment="cardProdouct">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div th:each="el : ${products}" class="col">
+            <div class="card shadow-sm m-3">
+                <a th:href="@{/blog/{id}(id=${el.id})}" class="text-decoration-none">
+                    <div th:if="${el.img_url != ''}">
+                        <img class="card-img-top " th:src="@{${el.img_url}}" th:alt="'img'"/>
+                    </div>
+                </a>
+                <div class="card-body">
+
+                    <div class="row justify-content-between">
+                        <div class="col-md-auto">
+                            <h1 th:text="${el.title}"></h1>
+                        </div>
+                        <div class="col-md-auto my-auto">
+                            <div th:if="${el.isInPrice}">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32"
+                                     viewBox="0 0 48 48">
+                                    <path fill="#c8e6c9"
+                                          d="M44,24c0,11-9,20-20,20S4,35,4,24S13,4,24,4S44,13,44,24z"></path>
+                                    <polyline fill="none" stroke="#4caf50" stroke-miterlimit="10" stroke-width="4"
+                                              points="14,24 21,31 36,16"></polyline>
+                                </svg>
+                            </div>
+                            <div th:if="${!el.isInPrice}">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="32" height="32"
+                                     viewBox="0 0 48 48">
+                                    <path fill="#f44336"
+                                          d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"></path>
+                                    <path fill="#fff"
+                                          d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z"></path>
+                                    <path fill="#fff"
+                                          d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div th:if="${el.short_description != ''}">
+                        <p th:text="${el.short_description}" class="card-text"/>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group my-2 ">
+                            <form th:action="'/all-work/'+${el.id}">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary"> Детальніше</button>
+                            </form>
+
+                            <!--                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                        </div>
+                        <small class="text-body-secondary"><p th:text="'2'"/></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- !!!!!!!!!!!!!!!!!!!!!!         -->
+<div th:fragment="cardProdouctInPrice">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div th:each="el : ${products}" th:if="${el.isInPrice}" class="col">
+            <div class="card shadow-sm m-3">
+                <a th:href="@{/blog/{id}(id=${el.id})}" class="text-decoration-none">
+                    <div th:if="${el.img_url != ''}">
+                        <img class="card-img-top " th:src="@{${el.img_url}}" th:alt="'img'"/>
+                    </div>
+                </a>
+                <div class="card-body">
+                    <h1 th:text="${el.title}"/>
+                    <div th:if="${el.short_description != ''}">
+                        <p th:text="${el.short_description}" class="card-text"/>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group my-2 ">
+                            <form th:action="'/in-price/'+${el.id}">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary"> Детальніше</button>
+                            </form>
+
+                            <!--                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+                        </div>
+                        <small class="text-body-secondary"><p th:text="'В наявності: '+ ${el.isInPrice}"/></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:fragment="card" class="container mt-5">
+
+    <div th:each="el : ${posts}" class="alert alert-info mt-2">
+        <h3 th:text="${el.title}"></h3>
+        <p th:text="${el.short_description}"></p>
+        <a th:href="'/blog/'+${el.id}" class="btn-success btn-warning">Детальніше</a>
+    </div>
+</div>

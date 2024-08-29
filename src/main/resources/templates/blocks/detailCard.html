@@ -1,0 +1,45 @@
+<div th:fragment="detail" class="container mt-5 mb-5">
+    <div th:each="el : ${products}" class="alert alert-info mt-2">
+        <h1 th:text="${el.title}"/>
+        <div th:if="${el.short_description != ''}">
+            <p th:text="${el.short_description}"/>
+        </div>
+
+        <div th:if="${el.img_url != ''}">
+            <img th:src="@{${el.img_url}}" th:alt="'img'" />
+        </div>
+        <!--        <div th:if="${el.img_url == null}">-->
+        <!--            <p>Image not available</p>-->
+        <!--        </div>-->
+        <p th:text="${el.text}"/>
+        <p th:text="'В наявності: '+ ${el.isInPrice}"/>
+        <a th:href="'/all-work/'+${el.id} + '/edit'" class="btn btn-warning ">Редагувати</a><br><br>
+        <form th:action="'/all-work/'+${el.id}+ '/remove'" method="post">
+            <button type="submit" class="btn btn-warning ">Видалити</button>
+        </form>
+    </div>
+</div>
+
+
+
+<div th:fragment="detailInPrice" class="container mt-5 mb-5">
+    <div th:each="el : ${products}" class="alert alert-info mt-2">
+        <h1 th:text="${el.title}"/>
+        <div th:if="${el.short_description != ''}">
+            <p th:text="${el.short_description}"/>
+        </div>
+
+        <div th:if="${el.img_url != ''}">
+            <img th:src="@{${el.img_url}}" th:alt="'img'" />
+        </div>
+        <!--        <div th:if="${el.img_url == null}">-->
+        <!--            <p>Image not available</p>-->
+        <!--        </div>-->
+        <p th:text="${el.text}"/>
+        <p th:text="'В наявності: '+ ${el.isInPrice}"/>
+        <a th:href="'/in-price/'+${el.id} + '/edit'" class="btn btn-warning ">Редагувати</a><br><br>
+        <form th:action="'/in-price/'+${el.id}+ '/remove'" method="post">
+            <button type="submit" class="btn btn-warning ">Видалити</button>
+        </form>
+    </div>
+</div>

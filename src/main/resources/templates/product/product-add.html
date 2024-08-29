@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Додати роботу</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+
+</head>
+<body>
+
+<div th:insert="~{blocks/header :: header}"></div>
+
+<div class="container mt-5 mb-5">
+    <h1>Додати статю</h1>
+    <form action="/all-work/add" method="post">
+
+        <input type="text" name="title" placeholder="Заголовок статі" class="form-control "><br>
+
+        <input type="text" name="imgUrl" placeholder="Url картинок" class="form-control"><br>
+        <input type="text" name="shortDescription" placeholder="короткий опис(необов'язковий)" class="form-control"><br>
+        <textarea name="text" placeholder="Текст статі" class="form-control"></textarea>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="isInPrice" id="inPriceYes" value="true" >
+            <label class="form-check-label" for="inPriceYes">
+                Є в наявості
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="isInPrice" id="inPriceNo" value="false" >
+            <label class="form-check-label" for="inPriceNo">
+                Нема в наявості
+            </label>
+        </div><br>
+        <br>
+        <button type="submit" class="btn btn-success">Опублікувати</button>
+    </form>
+</div>
+
+
+
+
+<div th:insert="~{blocks/footer :: footer}"></div>
+
+</body>
+</html>
